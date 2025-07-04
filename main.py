@@ -1,6 +1,7 @@
 import pytesseract
 import cv2
-import PIL
+import os
+from PIL import Image
 
 # to do
 # 1. image pre-processing before text extraction
@@ -8,7 +9,10 @@ import PIL
 def extract_text_from_image(file_path: str)->str:
     
     # read image
-    img = cv2.imread(file_path)
+    img = Image.open(file_path)
+
+    # convert to grayscale
+    gray = img.convert('L')
 
     # config
     config = ('-l eng --oem 1 --psm 3')
@@ -23,9 +27,9 @@ if __name__ == "__main__":
     print("SafeEats is running...")
     imgs = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.webp', 'img5.jpg', 'img6.webp', 'img7.jpg']
     
+    imgs_dir = os.path.join(os.path.dirname(__file__), "test_images")
     for img in imgs:
-        
-        pth = f"/Users/perucymussiba/Desktop/projects/SafeEats/test_images/{img}"
+        pth = os.path.join(imgs_dir, img)
         text = extract_text_from_image(pth)
         print(f"Extracted text from {img}:")
         print(text)
