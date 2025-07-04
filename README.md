@@ -25,13 +25,13 @@ There are many food products with complex ingredient names, making it difficult 
    ```
 3. Install dependencies:
    ```sh
-   pip install -r requirements.txt
+   uv sync
    ```
 
 ## Usage
 Run the application with:
 ```sh
-python main.py
+uv run main.py
 ```
 Follow the on-screen instructions to scan and analyze food product ingredients.
 
